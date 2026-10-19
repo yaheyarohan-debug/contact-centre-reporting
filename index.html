@@ -370,4 +370,21 @@
       filterCategory('all', document.querySelector('.cat-btn'));
     }
 
-    function
+    function updateBadge(count) {
+      document.getElementById('articleCountBadge').textContent = `Showing ${count} Resources`;
+      document.getElementById('noResults').style.display = count === 0 ? "block" : "none";
+    }
+
+    function openArticleModal(title, text) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalBody').innerHTML = `<p class="font-semibold text-slate-900">${title}</p><p class="mt-2">${text}</p><p class="mt-4 text-slate-500 italic">For full policy schedule clauses or endorsements, please refer to the corporate intranet filing system.</p>`;
+      document.getElementById('articleModal').classList.remove('hidden');
+    }
+
+    function closeArticleModal() {
+      document.getElementById('articleModal').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
