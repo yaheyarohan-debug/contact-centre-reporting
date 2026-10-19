@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>General Insurance Knowledge Hub | Agent Portal</title>
+  <title>Fairfirst Insurance | Agent & Staff Knowledge Hub</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Inter & Playfair Display -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
   
   <script>
@@ -27,8 +27,7 @@
               hover: '#B45309',
               light: '#FEF3C7',
               border: '#F59E0B'
-            },
-            offwhite: '#F8FAFC'
+            }
           },
           fontFamily: {
             sans: ['Inter', 'sans-serif'],
@@ -45,15 +44,18 @@
 </head>
 <body class="text-slate-800 min-h-screen flex flex-col selection:bg-amberAccent-light selection:text-amberAccent-hover">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-amber-600 text-slate-950 px-4 py-2 text-xs font-semibold flex justify-between items-center shadow-inner">
-    <div class="max-w-7xl mx-auto w-full flex items-center justify-between">
+  <!-- Top Announcement Bar with Hotline -->
+  <div class="bg-amber-600 text-slate-950 px-4 py-2 text-xs font-semibold shadow-inner">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
       <div class="flex items-center space-x-2">
-        <span class="bg-slate-950 text-amber-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Notice</span>
-        <span>New Motor Underwriting Guidelines (v4.2) effective from Q2 2026.</span>
+        <span class="bg-slate-950 text-amber-400 text-[10px] uppercase font-bold px-2 py-0.5 rounded">Fairfirst Notice</span>
+        <span>Internal Knowledge Hub for Agents & Underwriting Operations.</span>
       </div>
-      <div class="hidden md:flex items-center space-x-4 text-xs font-medium">
-        <span><i class="fa-solid fa-phone mr-1"></i> Underwriting Helpline: Ext. 405</span>
+      <div class="flex items-center space-x-4 text-xs font-bold">
+        <span><i class="fa-solid fa-phone-volume mr-1"></i> Fairfirst Hotline: 0112 428 428</span>
+        <a href="https://www.fairfirst.lk" target="_blank" class="bg-slate-950 text-white px-2.5 py-0.5 rounded text-[11px] hover:bg-slate-800 transition">
+          <i class="fa-solid fa-globe mr-1"></i> www.fairfirst.lk
+        </a>
       </div>
     </div>
   </div>
@@ -68,13 +70,16 @@
           <i class="fa-solid fa-shield-halved text-slate-950 text-xl"></i>
         </div>
         <div>
-          <h1 class="text-xl font-bold tracking-tight text-white font-serif">GENERAL INSURANCE</h1>
+          <h1 class="text-xl font-bold tracking-tight text-white font-serif">FAIRFIRST INSURANCE</h1>
           <p class="text-[11px] uppercase tracking-widest text-amber-500 font-semibold">Knowledge & Underwriting Hub</p>
         </div>
       </div>
 
-      <!-- Quick Portal Badge -->
+      <!-- Quick Links -->
       <div class="flex items-center space-x-4">
+        <a href="https://www.fairfirst.lk" target="_blank" class="hidden sm:inline-flex items-center text-xs text-slate-300 hover:text-amber-400 transition">
+          <i class="fa-solid fa-house mr-1.5"></i> Home Page (www.fairfirst.lk)
+        </a>
         <span class="text-xs text-slate-300 bg-charcoal-700 px-3 py-1.5 rounded-full border border-charcoal-600">
           <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-2"></i>Agent Portal Live
         </span>
@@ -83,13 +88,13 @@
   </header>
 
   <!-- Hero & Search Banner -->
-  <section class="bg-charcoal-900 text-white border-b border-amberAccent-border/20 py-12 px-4 relative overflow-hidden">
+  <section class="bg-charcoal-900 text-white border-b border-amberAccent-border/20 py-10 px-4 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D97706_1px,transparent_1px)] [background-size:16px_16px]"></div>
     
     <div class="max-w-4xl mx-auto text-center relative z-10">
       <span class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-2 inline-block">Central Repository</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Search Policy Rules, Claims & Guidelines</h2>
-      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-8">Instant access to standard operating procedures, circulars, clauses, and document templates for field agents.</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Fairfirst Policy Rules, Claims & SOPs</h2>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-6">Search standard underwriting guidelines, claims checklists, and field advisor resources.</p>
       
       <!-- Search Input -->
       <div class="relative max-w-2xl mx-auto">
@@ -100,17 +105,9 @@
           type="text" 
           id="searchInput" 
           onkeyup="filterContent()" 
-          placeholder="Search by keywords (e.g. Third Party, Fire Claim, NCB discount)..." 
-          class="w-full pl-12 pr-4 py-4 rounded-xl text-slate-900 bg-white shadow-2xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm sm:text-base font-medium"
+          placeholder="Search by keywords (e.g. Motor Claim, Property, Excess)..." 
+          class="w-full pl-12 pr-4 py-3.5 rounded-xl text-slate-900 bg-white shadow-2xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm font-medium"
         >
-      </div>
-
-      <!-- Quick Search Tags -->
-      <div class="flex flex-wrap justify-center gap-2 mt-4 text-xs text-slate-400">
-        <span class="text-slate-500">Popular Searches:</span>
-        <button onclick="setSearch('Motor')" class="hover:text-amber-400 underline">Motor Claims</button>
-        <button onclick="setSearch('Fire')" class="hover:text-amber-400 underline">Fire Risk Assessment</button>
-        <button onclick="setSearch('Excess')" class="hover:text-amber-400 underline">Policy Excess Clauses</button>
       </div>
     </div>
   </section>
@@ -120,83 +117,94 @@
     
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
       
-      <!-- LEFT SIDEBAR (3 Columns on desktop) -->
-      <aside class="lg:col-span-3 space-y-6">
+      <!-- LEFT SIDEBAR -->
+      <aside class="lg:col-span-4 space-y-6">
         
         <!-- Category Navigation Menu -->
         <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
           <h3 class="text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-4 pb-2 border-b border-slate-100">
-            <i class="fa-solid fa-list-ul mr-2 text-amber-600"></i>Categories
+            <i class="fa-solid fa-list-ul mr-2 text-amber-600"></i>Resource Categories
           </h3>
-          <nav class="space-y-1" id="categoryNav">
+          <nav class="space-y-1">
             <button onclick="filterCategory('all', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-semibold bg-charcoal-700 text-amber-400">
               <span><i class="fa-solid fa-border-all mr-2.5 w-4"></i>All Categories</span>
-              <span id="count-all" class="bg-charcoal-900 text-white px-2 py-0.5 rounded-full text-[10px]">3</span>
+              <span class="bg-charcoal-900 text-white px-2 py-0.5 rounded-full text-[10px]">3</span>
             </button>
             <button onclick="filterCategory('motor', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition">
               <span><i class="fa-solid fa-car mr-2.5 w-4 text-blue-600"></i>Motor Insurance</span>
-              <span id="count-motor" class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
             </button>
             <button onclick="filterCategory('property', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition">
               <span><i class="fa-solid fa-building-shield mr-2.5 w-4 text-emerald-600"></i>Property & Fire</span>
-              <span id="count-property" class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
             </button>
             <button onclick="filterCategory('claims', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition">
               <span><i class="fa-solid fa-file-signature mr-2.5 w-4 text-amber-600"></i>Claims Procedure</span>
-              <span id="count-claims" class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
             </button>
           </nav>
         </div>
 
-        <!-- Quick Downloads Widget -->
-        <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200">
-          <h3 class="text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-3 pb-2 border-b border-slate-100">
-            <i class="fa-solid fa-download mr-2 text-amber-600"></i>Quick Forms
+        <!-- Official Office Addresses Widget -->
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-slate-200 space-y-4">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-charcoal-700 pb-2 border-b border-slate-100">
+            <i class="fa-solid fa-location-dot mr-2 text-amber-600"></i>Fairfirst Office Locations
           </h3>
-          <ul class="space-y-2.5 text-xs">
-            <li>
-              <a href="#" class="flex items-center text-slate-700 hover:text-amber-600 transition group">
-                <i class="fa-regular fa-file-pdf text-red-500 mr-2 text-sm group-hover:scale-110 transition"></i>
-                <span class="truncate">Motor Claim Form (Editable)</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center text-slate-700 hover:text-amber-600 transition group">
-                <i class="fa-regular fa-file-pdf text-red-500 mr-2 text-sm group-hover:scale-110 transition"></i>
-                <span class="truncate">Fire Risk Assessment Sheet</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="flex items-center text-slate-700 hover:text-amber-600 transition group">
-                <i class="fa-regular fa-file-word text-blue-500 mr-2 text-sm group-hover:scale-110 transition"></i>
-                <span class="truncate">Proposal Form Template</span>
-              </a>
-            </li>
-          </ul>
+
+          <!-- Head Office -->
+          <div class="text-xs space-y-1">
+            <p class="font-bold text-slate-900 flex items-center">
+              <i class="fa-solid fa-building text-amber-600 mr-1.5"></i> Fairfirst Head Office
+            </p>
+            <p class="text-slate-600 pl-5">Fairfirst Insurance Limited</p>
+            <p class="text-slate-600 pl-5">Access Tower 2 (14th Floor)</p>
+            <p class="text-slate-600 pl-5">No: 278/4, Union Place, Colombo 02.</p>
+          </div>
+
+          <hr class="border-slate-100">
+
+          <!-- Contact Center -->
+          <div class="text-xs space-y-1">
+            <p class="font-bold text-slate-900 flex items-center">
+              <i class="fa-solid fa-headset text-amber-600 mr-1.5"></i> Fairfirst Contact Center
+            </p>
+            <p class="text-slate-600 pl-5">Fairfirst Insurance Limited</p>
+            <p class="text-slate-600 pl-5">Access Tower 1 (North) 5th Floor, Colombo 02.</p>
+            <p class="text-slate-900 font-semibold pl-5 pt-1">
+              <i class="fa-solid fa-phone text-amber-600 mr-1"></i> Hotline: 0112 428 428
+            </p>
+          </div>
         </div>
 
-        <!-- Support Assistance Box -->
-        <div class="bg-charcoal-800 text-white rounded-xl p-5 shadow-md border border-charcoal-600">
-          <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-2">Underwriting Support</h4>
-          <p class="text-xs text-slate-300 mb-3">For special risk acceptance or high-value coverage inquiries:</p>
-          <a href="mailto:underwriting@insurance.com" class="block text-center w-full py-2 bg-amber-600 hover:bg-amber-700 text-slate-950 font-bold text-xs rounded-lg transition">
-            <i class="fa-solid fa-envelope mr-1.5"></i> Contact Desk
-          </a>
+        <!-- Corporate Profile Widget -->
+        <div class="bg-charcoal-800 text-white rounded-xl p-5 shadow-md border border-charcoal-600 space-y-3">
+          <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Leadership & Ownership</h4>
+          <div class="text-xs space-y-2 text-slate-300">
+            <p><strong class="text-white">CEO:</strong> Wickneswaran Ravishankar (CEO's Secretariat)</p>
+            <hr class="border-charcoal-600">
+            <p class="font-bold text-amber-300">Mother Company:</p>
+            <p class="font-semibold text-white">Fairfax Financial Holdings Limited</p>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Financial holding company based in Toronto, Ontario engaged in property, casualty insurance, reinsurance, and investment management.
+            </p>
+            <p class="text-[11px] text-slate-400"><strong>Chairman & Founder:</strong> Prem Watsa (1985)</p>
+            <p class="text-[11px] text-slate-400"><strong>Founded:</strong> 1951 | <strong>HQ:</strong> Toronto, Canada</p>
+          </div>
         </div>
 
       </aside>
 
-      <!-- RIGHT CONTENT AREA (9 Columns on desktop) -->
-      <section class="lg:col-span-9 space-y-6">
+      <!-- RIGHT CONTENT AREA -->
+      <section class="lg:col-span-8 space-y-6">
         
         <!-- Header Controls -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-xl border border-slate-200 shadow-sm gap-2">
           <div>
-            <h3 class="text-base font-bold text-charcoal-800" id="currentCategoryTitle">All Published Guidelines</h3>
-            <p class="text-xs text-slate-500">Official directives and circulars for branch staff and advisors.</p>
+            <h3 class="text-base font-bold text-charcoal-800">Underwriting & Claims SOPs</h3>
+            <p class="text-xs text-slate-500">Official procedures for field advisors and branch operations.</p>
           </div>
           <span id="articleCountBadge" class="text-xs bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1 rounded-full font-bold">
-            Showing 3 Resources
+            3 Resources Available
           </span>
         </div>
 
@@ -208,20 +216,14 @@
             <div class="p-6 flex-grow">
               <div class="flex justify-between items-center mb-3">
                 <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">Motor</span>
-                <span class="text-xs font-mono text-slate-400">REF: CIR-MTR-2026-01</span>
+                <span class="text-xs font-mono text-slate-400">REF: FF-MTR-01</span>
               </div>
-              <h4 class="font-bold text-slate-900 text-base mb-2 hover:text-amber-600 transition cursor-pointer" onclick="openArticleModal('Comprehensive Private Motor Guidelines', 'Underwriting criteria for private cars, including driver age limits, NCB retention rules, optional peril inclusions, and vehicle inspection protocol.')">
-                Comprehensive Private Motor Guidelines
-              </h4>
-              <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
-                Detailed terms regarding age brackets for drivers, non-standard accessory coverage caps, and mandatory pre-risk inspection requirements for vehicles older than 7 years.
-              </p>
+              <h4 class="font-bold text-slate-900 text-base mb-2">Comprehensive Motor Guidelines</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Underwriting guidelines, age brackets, NCB retention rules, and pre-risk inspection requirements for motor policies.</p>
             </div>
             <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
-              <span class="text-slate-500 font-medium"><i class="fa-regular fa-clock mr-1 text-amber-600"></i> Updated: Jan 2026</span>
-              <button onclick="openArticleModal('Comprehensive Private Motor Guidelines', 'Underwriting criteria for private cars, including driver age limits, NCB retention rules, optional peril inclusions, and vehicle inspection protocol.')" class="font-bold text-amber-700 hover:text-amber-900 flex items-center">
-                Read Full Rule <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
-              </button>
+              <span class="text-slate-500"><i class="fa-regular fa-clock text-amber-600 mr-1"></i> Jan 2026</span>
+              <button onclick="alert('Viewing Motor Policy Guidelines')" class="font-bold text-amber-700 hover:text-amber-900">Read Article &rarr;</button>
             </div>
           </article>
 
@@ -229,21 +231,15 @@
           <article class="article-card bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:border-amber-400 transition flex flex-col overflow-hidden" data-category="property">
             <div class="p-6 flex-grow">
               <div class="flex justify-between items-center mb-3">
-                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">Property & Fire</span>
-                <span class="text-xs font-mono text-slate-400">REF: CIR-PROP-2026-04</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">Property</span>
+                <span class="text-xs font-mono text-slate-400">REF: FF-PROP-04</span>
               </div>
-              <h4 class="font-bold text-slate-900 text-base mb-2 hover:text-amber-600 transition cursor-pointer" onclick="openArticleModal('Standard Fire & Special Perils Policy Rules', 'Guidelines for underwriting commercial property, residential risks, natural disaster extensions, and deductibles.')">
-                Standard Fire & Special Perils Tariff Rules
-              </h4>
-              <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
-                Covers residential and commercial property valuation protocols, flood risk mapping compliance, burglary endorsement additions, and mandatory deductibles.
-              </p>
+              <h4 class="font-bold text-slate-900 text-base mb-2">Fire & Special Perils Tariff Rules</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Residential and commercial property valuation, flood mapping compliance, and burglary endorsement terms.</p>
             </div>
             <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
-              <span class="text-slate-500 font-medium"><i class="fa-regular fa-clock mr-1 text-amber-600"></i> Updated: Feb 2026</span>
-              <button onclick="openArticleModal('Standard Fire & Special Perils Tariff Rules', 'Guidelines for underwriting commercial property, residential risks, natural disaster extensions, and deductibles.')" class="font-bold text-amber-700 hover:text-amber-900 flex items-center">
-                Read Full Rule <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
-              </button>
+              <span class="text-slate-500"><i class="fa-regular fa-clock text-amber-600 mr-1"></i> Feb 2026</span>
+              <button onclick="alert('Viewing Property Tariff Rules')" class="font-bold text-amber-700 hover:text-amber-900">Read Article &rarr;</button>
             </div>
           </article>
 
@@ -252,33 +248,17 @@
             <div class="p-6 flex-grow">
               <div class="flex justify-between items-center mb-3">
                 <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200">Claims</span>
-                <span class="text-xs font-mono text-slate-400">REF: SOP-CLM-2026-09</span>
+                <span class="text-xs font-mono text-slate-400">REF: FF-CLM-09</span>
               </div>
-              <h4 class="font-bold text-slate-900 text-base mb-2 hover:text-amber-600 transition cursor-pointer" onclick="openArticleModal('Motor Accident Claim Settlement Checklist', 'Step-by-step workflow for agents assisting clients during post-accident claim reporting, surveyor appointment, and document verification.')">
-                Motor Claim Notification & Survey Checklist
-              </h4>
-              <p class="text-slate-600 text-xs leading-relaxed line-clamp-3 mb-4">
-                Field SOP for immediate accident reporting, required digital photos, police entry rules for third-party injuries, and fast-track garage authorization thresholds.
-              </p>
+              <h4 class="font-bold text-slate-900 text-base mb-2">Motor Claim Notification Workflow</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Checklist for immediate accident reporting, required digital evidence, surveyor assignments, and hotline dispatch.</p>
             </div>
             <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
-              <span class="text-slate-500 font-medium"><i class="fa-regular fa-clock mr-1 text-amber-600"></i> Updated: Mar 2026</span>
-              <button onclick="openArticleModal('Motor Claim Notification & Survey Checklist', 'Field SOP for immediate accident reporting, required digital photos, police entry rules for third-party injuries, and fast-track garage authorization thresholds.')" class="font-bold text-amber-700 hover:text-amber-900 flex items-center">
-                Read Full Rule <i class="fa-solid fa-arrow-right ml-1.5 text-[10px]"></i>
-              </button>
+              <span class="text-slate-500"><i class="fa-regular fa-clock text-amber-600 mr-1"></i> Mar 2026</span>
+              <button onclick="alert('Viewing Claim Workflow')" class="font-bold text-amber-700 hover:text-amber-900">Read Article &rarr;</button>
             </div>
           </article>
 
-        </div>
-
-        <!-- Empty Results State -->
-        <div id="noResults" class="hidden text-center py-16 bg-white rounded-xl border border-slate-200 shadow-sm">
-          <i class="fa-solid fa-folder-open text-5xl text-slate-300 mb-4"></i>
-          <h4 class="text-lg font-bold text-slate-700">No Matching Guidelines Found</h4>
-          <p class="text-xs text-slate-500 mt-1">Try resetting your search query or choosing a different category on the left sidebar.</p>
-          <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-charcoal-700 text-amber-400 font-bold text-xs rounded-lg hover:bg-charcoal-800 transition">
-            Reset All Filters
-          </button>
         </div>
 
       </section>
@@ -287,36 +267,16 @@
 
   </main>
 
-  <!-- Article Reader Modal Pop-up -->
-  <div id="articleModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-hidden shadow-2xl flex flex-col border border-slate-200">
-      <div class="bg-charcoal-800 text-white p-6 border-b border-charcoal-600 flex justify-between items-center">
-        <div>
-          <span class="text-[10px] uppercase tracking-widest text-amber-500 font-bold">Knowledge Document</span>
-          <h3 id="modalTitle" class="text-lg font-bold text-white">Article Title</h3>
-        </div>
-        <button onclick="closeArticleModal()" class="text-slate-400 hover:text-white text-xl font-bold p-1">&times;</button>
-      </div>
-      <div class="p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed" id="modalBody">
-        <!-- Content inserted dynamically -->
-      </div>
-      <div class="bg-slate-50 px-6 py-4 border-t border-slate-200 flex justify-end">
-        <button onclick="closeArticleModal()" class="px-5 py-2 bg-charcoal-800 text-amber-400 font-bold text-xs rounded-lg hover:bg-charcoal-900 transition">
-          Close Window
-        </button>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer class="bg-charcoal-900 text-slate-400 py-8 border-t border-charcoal-700 mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
-      <p class="font-serif text-slate-300 font-semibold tracking-wider">GENERAL INSURANCE AGENT KNOWLEDGE HUB</p>
-      <p class="text-slate-500">&copy; 2026 Internal Information System. Strictly for Authorized Staff and Registered Field Advisors.</p>
+      <p class="font-serif text-slate-300 font-semibold tracking-wider">FAIRFIRST INSURANCE LIMITED</p>
+      <p class="text-slate-500">Access Tower 2 (14th Floor), No: 278/4, Union Place, Colombo 02 | Hotline: 0112 428 428</p>
+      <p class="text-slate-500 text-[11px]">&copy; 2026 Fairfirst Insurance. Subsidiary of Fairfax Financial Holdings Limited.</p>
     </div>
   </footer>
 
-  <!-- Interactive JavaScript -->
+  <!-- Search & Filter Script -->
   <script>
     function filterContent() {
       const input = document.getElementById('searchInput').value.toLowerCase();
@@ -333,12 +293,7 @@
         }
       });
 
-      updateBadge(visibleCount);
-    }
-
-    function setSearch(tag) {
-      document.getElementById('searchInput').value = tag;
-      filterContent();
+      document.getElementById('articleCountBadge').textContent = `${visibleCount} Resources Available`;
     }
 
     function filterCategory(category, element) {
@@ -354,7 +309,6 @@
         }
       });
 
-      // Style active button
       document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.className = "cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition";
       });
@@ -362,27 +316,7 @@
         element.className = "cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-semibold bg-charcoal-700 text-amber-400";
       }
 
-      updateBadge(visibleCount);
-    }
-
-    function resetFilters() {
-      document.getElementById('searchInput').value = '';
-      filterCategory('all', document.querySelector('.cat-btn'));
-    }
-
-    function updateBadge(count) {
-      document.getElementById('articleCountBadge').textContent = `Showing ${count} Resources`;
-      document.getElementById('noResults').style.display = count === 0 ? "block" : "none";
-    }
-
-    function openArticleModal(title, text) {
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalBody').innerHTML = `<p class="font-semibold text-slate-900">${title}</p><p class="mt-2">${text}</p><p class="mt-4 text-slate-500 italic">For full policy schedule clauses or endorsements, please refer to the corporate intranet filing system.</p>`;
-      document.getElementById('articleModal').classList.remove('hidden');
-    }
-
-    function closeArticleModal() {
-      document.getElementById('articleModal').classList.add('hidden');
+      document.getElementById('articleCountBadge').textContent = `${visibleCount} Resources Available`;
     }
   </script>
 
