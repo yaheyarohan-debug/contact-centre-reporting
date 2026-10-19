@@ -52,7 +52,7 @@
         <span>Internal Knowledge Hub for Agents & Underwriting Operations.</span>
       </div>
       <div class="flex items-center space-x-4 text-xs font-bold">
-        <span><i class="fa-solid fa-phone-volume mr-1"></i> Fairfirst Hotline: 0112 428 428</span>
+        <span><i class="fa-solid fa-phone-volume mr-1"></i> Hotline: 0112 428 428</span>
         <a href="https://www.fairfirst.lk" target="_blank" class="bg-slate-950 text-white px-2.5 py-0.5 rounded text-[11px] hover:bg-slate-800 transition">
           <i class="fa-solid fa-globe mr-1"></i> www.fairfirst.lk
         </a>
@@ -75,12 +75,12 @@
         </div>
       </div>
 
-      <!-- Quick Links -->
+      <!-- Quick Navigation links including Home Page (www.fairfirst.lk) -->
       <div class="flex items-center space-x-4">
-        <a href="https://www.fairfirst.lk" target="_blank" class="hidden sm:inline-flex items-center text-xs text-slate-300 hover:text-amber-400 transition">
+        <a href="https://www.fairfirst.lk" target="_blank" class="flex items-center text-xs font-bold bg-amber-600 hover:bg-amber-700 text-slate-950 px-3 py-1.5 rounded-lg transition shadow">
           <i class="fa-solid fa-house mr-1.5"></i> Home Page (www.fairfirst.lk)
         </a>
-        <span class="text-xs text-slate-300 bg-charcoal-700 px-3 py-1.5 rounded-full border border-charcoal-600">
+        <span class="hidden sm:inline-flex text-xs text-slate-300 bg-charcoal-700 px-3 py-1.5 rounded-full border border-charcoal-600">
           <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-2"></i>Agent Portal Live
         </span>
       </div>
@@ -93,8 +93,8 @@
     
     <div class="max-w-4xl mx-auto text-center relative z-10">
       <span class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-2 inline-block">Central Repository</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Fairfirst Policy Rules, Claims & SOPs</h2>
-      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-6">Search standard underwriting guidelines, claims checklists, and field advisor resources.</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Fairfirst Policy Rules, Training Manuals & SOPs</h2>
+      <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto mb-6">Search standard underwriting guidelines, training manuals, claims checklists, and field advisor resources.</p>
       
       <!-- Search Input -->
       <div class="relative max-w-2xl mx-auto">
@@ -105,7 +105,7 @@
           type="text" 
           id="searchInput" 
           onkeyup="filterContent()" 
-          placeholder="Search by keywords (e.g. Motor Claim, Property, Excess)..." 
+          placeholder="Search by keywords (e.g. Training Manual, Motor Claim, Property, Hotline)..." 
           class="w-full pl-12 pr-4 py-3.5 rounded-xl text-slate-900 bg-white shadow-2xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm font-medium"
         >
       </div>
@@ -128,7 +128,11 @@
           <nav class="space-y-1">
             <button onclick="filterCategory('all', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-semibold bg-charcoal-700 text-amber-400">
               <span><i class="fa-solid fa-border-all mr-2.5 w-4"></i>All Categories</span>
-              <span class="bg-charcoal-900 text-white px-2 py-0.5 rounded-full text-[10px]">3</span>
+              <span class="bg-charcoal-900 text-white px-2 py-0.5 rounded-full text-[10px]">4</span>
+            </button>
+            <button onclick="filterCategory('training', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition">
+              <span><i class="fa-solid fa-graduation-cap mr-2.5 w-4 text-purple-600"></i>Training Manuals</span>
+              <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[10px]">1</span>
             </button>
             <button onclick="filterCategory('motor', this)" class="cat-btn w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition">
               <span><i class="fa-solid fa-car mr-2.5 w-4 text-blue-600"></i>Motor Insurance</span>
@@ -200,17 +204,33 @@
         <!-- Header Controls -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white p-4 rounded-xl border border-slate-200 shadow-sm gap-2">
           <div>
-            <h3 class="text-base font-bold text-charcoal-800">Underwriting & Claims SOPs</h3>
-            <p class="text-xs text-slate-500">Official procedures for field advisors and branch operations.</p>
+            <h3 class="text-base font-bold text-charcoal-800">Training Manuals, Underwriting & Claims SOPs</h3>
+            <p class="text-xs text-slate-500">Official reference documents and procedures for field advisors.</p>
           </div>
           <span id="articleCountBadge" class="text-xs bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1 rounded-full font-bold">
-            3 Resources Available
+            4 Resources Available
           </span>
         </div>
 
         <!-- Articles Grid -->
         <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           
+          <!-- Article 0: New Recruits Training Manual (Attached Document) -->
+          <article class="article-card bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:border-amber-400 transition flex flex-col overflow-hidden ring-2 ring-amber-400/30" data-category="training">
+            <div class="p-6 flex-grow">
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">Training Document</span>
+                <span class="text-xs font-mono text-slate-400">REF: FF-TRN-2026</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-base mb-2">New Recruits Training Manual</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mb-4">Complete foundation manual covering insurance principles, terminology, contact centre guidelines, CQM standards, and FNOL intimation checklists.</p>
+            </div>
+            <div class="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex justify-between items-center text-xs">
+              <span class="text-slate-500"><i class="fa-regular fa-clock text-amber-600 mr-1"></i> 2026 Edition</span>
+              <button onclick="openTrainingManualModal()" class="font-bold text-amber-700 hover:text-amber-900">Read Full Manual &rarr;</button>
+            </div>
+          </article>
+
           <!-- Article 1: Motor -->
           <article class="article-card bg-white rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:border-amber-400 transition flex flex-col overflow-hidden" data-category="motor">
             <div class="p-6 flex-grow">
@@ -267,12 +287,58 @@
 
   </main>
 
+  <!-- Training Manual Viewer Modal -->
+  <div id="trainingModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col border border-slate-200">
+      <div class="bg-charcoal-800 text-white p-5 border-b border-charcoal-600 flex justify-between items-center">
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-amber-500 font-bold">Attached Document Reference</span>
+          <h3 class="text-lg font-bold text-white">Fairfirst New Recruits Training Manual (2026)</h3>
+        </div>
+        <button onclick="closeTrainingManualModal()" class="text-slate-400 hover:text-white text-2xl font-bold p-1">&times;</button>
+      </div>
+      <div class="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50" id="manualContent">
+        <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded text-amber-900 font-medium">
+          <p class="font-bold uppercase text-xs mb-1">Purpose of this manual:</p>
+          To provide new recruits with a practical foundation in insurance, the Sri Lankan insurance environment, Fairfirst's business context, contact-centre responsibilities, and customer-handling standards.
+        </div>
+        
+        <div>
+          <h4 class="font-bold text-slate-900 text-base mb-2">1. Key Insurance Terminology</h4>
+          <ul class="list-disc pl-5 space-y-1">
+            <li><strong>Insurer:</strong> Fairfirst Insurance Limited</li>
+            <li><strong>Premium:</strong> The amount paid or payable for insurance cover.</li>
+            <li><strong>Sum Insured:</strong> Stated amount used as the basis of cover.</li>
+            <li><strong>Deductible / Excess:</strong> Portion of loss borne by insured.</li>
+            <li><strong>Hotline:</strong> 0112 428 428</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 text-base mb-2">2. Principles & Regulation (IRCSL & Ombudsman)</h4>
+          <p>Operates under the Regulation of Insurance Industry Act No. 43 of 2000 supervised by IRCSL. Dispute escalations follow internal resolution before the Insurance Ombudsman Scheme.</p>
+        </div>
+
+        <div>
+          <h4 class="font-bold text-slate-900 text-base mb-2">3. Fairfirst CQM & Quality Standards</h4>
+          <p>Contact center quality monitoring weighs active listening (10%), courtesy (20%), script adherence (10%), and product knowledge (10%). Target score: Above 90 (Excellent), 80-90 (Good).</p>
+        </div>
+      </div>
+      <div class="bg-white px-6 py-4 border-t border-slate-200 flex justify-between items-center">
+        <span class="text-xs text-slate-400">Fairfirst Internal Reference Document</span>
+        <button onclick="closeTrainingManualModal()" class="px-5 py-2 bg-charcoal-800 text-amber-400 font-bold text-xs rounded-lg hover:bg-charcoal-900 transition">
+          Close Manual
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-charcoal-900 text-slate-400 py-8 border-t border-charcoal-700 mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
       <p class="font-serif text-slate-300 font-semibold tracking-wider">FAIRFIRST INSURANCE LIMITED</p>
       <p class="text-slate-500">Access Tower 2 (14th Floor), No: 278/4, Union Place, Colombo 02 | Hotline: 0112 428 428</p>
-      <p class="text-slate-500 text-[11px]">&copy; 2026 Fairfirst Insurance. Subsidiary of Fairfax Financial Holdings Limited.</p>
+      <p class="text-slate-500 text-[11px]">&copy; 2026 Fairfirst Insurance. Subsidiary of Fairfax Financial Holdings Limited. | <a href="https://www.fairfirst.lk" target="_blank" class="text-amber-500 underline">www.fairfirst.lk</a></p>
     </div>
   </footer>
 
@@ -317,6 +383,14 @@
       }
 
       document.getElementById('articleCountBadge').textContent = `${visibleCount} Resources Available`;
+    }
+
+    function openTrainingManualModal() {
+      document.getElementById('trainingModal').classList.remove('hidden');
+    }
+
+    function closeTrainingManualModal() {
+      document.getElementById('trainingModal').classList.add('hidden');
     }
   </script>
 
