@@ -1,1111 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Insurance Staff Knowledge Hub</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f5ff',
-                            100: '#e0ebff',
-                            200: '#bae0ff',
-                            600: '#0052cc',
-                            700: '#003e99',
-                            800: '#0c2340',
-                            900: '#07162c',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .line-clamp-3 {
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General Insurance Knowledge Hub</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-blue-200 selection:text-brand-900">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <header class="bg-brand-900 text-white border-b border-brand-800 sticky top-0 z-30 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Brand Logo & Title -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
-                <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
-                    <i class="fa-solid fa-book-bookmark text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="font-bold text-lg tracking-tight leading-tight">Insurance Knowledge Hub</h1>
-                    <p class="text-xs text-blue-200 font-medium">Public Information Portal for Agents</p>
-                </div>
-            </div>
-
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-1 text-sm font-medium">
-                <button onclick="navigateTo('home')" id="nav-home" class="px-3 py-2 rounded-md hover:bg-brand-800 text-white transition">
-                    <i class="fa-solid fa-house mr-1.5 opacity-80"></i> Home
-                </button>
-                <button onclick="navigateTo('categories')" id="nav-categories" class="px-3 py-2 rounded-md hover:bg-brand-800 text-slate-300 transition">
-                    <i class="fa-solid fa-folder-tree mr-1.5 opacity-80"></i> Categories
-                </button>
-                <button onclick="navigateTo('saved')" id="nav-saved" class="px-3 py-2 rounded-md hover:bg-brand-800 text-slate-300 transition relative">
-                    <i class="fa-solid fa-bookmark mr-1.5 opacity-80"></i> Bookmarks
-                    <span id="saved-badge" class="ml-1 px-1.5 py-0.5 text-xs bg-amber-500 text-white font-bold rounded-full hidden">0</span>
-                </button>
-            </nav>
-
-            <!-- Admin Authentication Bar -->
-            <div class="flex items-center space-x-2">
-                <!-- Admin-Only Actions -->
-                <div id="admin-actions" class="hidden flex items-center space-x-2">
-                    <button onclick="openArticleModal()" class="flex items-center space-x-1.5 text-xs font-semibold px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-md">
-                        <i class="fa-solid fa-plus"></i>
-                        <span>+ Add Article</span>
-                    </button>
-                    <button onclick="openChangePasscodeModal()" class="p-2 text-xs font-semibold rounded-lg bg-brand-800 hover:bg-brand-700 text-slate-200 transition" title="Change Admin Passcode">
-                        <i class="fa-solid fa-key"></i>
-                    </button>
-                    <button onclick="adminLogout()" class="px-3 py-2 text-xs font-semibold rounded-lg bg-red-600/80 hover:bg-red-600 text-white transition">
-                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
-                    </button>
-                </div>
-
-                <!-- Admin Login Button -->
-                <button id="admin-login-btn" onclick="openAdminLoginModal()" class="flex items-center space-x-1.5 text-xs font-semibold px-3.5 py-2 rounded-lg bg-brand-800 hover:bg-brand-700 text-slate-200 transition border border-brand-700">
-                    <i class="fa-solid fa-user-lock text-amber-400"></i>
-                    <span>Admin Login</span>
-                </button>
-            </div>
+  <!-- Header Navigation -->
+  <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="bg-indigo-700 p-2 rounded-lg">
+          <i class="fa-solid fa-shield-halved text-2xl text-indigo-200"></i>
         </div>
-    </header>
-
-    <main class="flex-grow">
-        <section class="bg-brand-900 text-white pt-10 pb-16 px-4 sm:px-6 lg:px-8 border-b border-brand-800 relative overflow-hidden">
-            <div class="max-w-4xl mx-auto text-center relative z-10">
-                <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-900/60 border border-blue-700/50 text-blue-200 text-xs font-medium mb-4">
-                    <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                    <span>Agent Portal - Open Access Knowledge Base</span>
-                </div>
-                
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2 flex items-center justify-center gap-3">
-                    <i class="fa-solid fa-book-open text-blue-400"></i> Agent Knowledge Center
-                </h2>
-                <p class="text-blue-200 text-sm sm:text-base font-medium tracking-wide mb-8">
-                    Quickly search insurance guidelines, claim procedures, underwriting rules, and policy documents.
-                </p>
-
-                <!-- Search Input Bar -->
-                <div class="relative max-w-2xl mx-auto">
-                    <div class="relative flex items-center shadow-2xl rounded-2xl overflow-hidden bg-white">
-                        <i class="fa-solid fa-magnifying-glass text-slate-400 text-lg absolute left-5"></i>
-                        <input 
-                            type="text" 
-                            id="main-search-input" 
-                            onkeyup="handleSearch(this.value)"
-                            placeholder="Type keywords (e.g. Motor Claim, Fire Policy, Third-Party)..." 
-                            class="w-full pl-14 pr-12 py-4 text-slate-800 placeholder-slate-400 text-sm sm:text-base focus:outline-none font-medium"
-                        >
-                        <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-4 text-slate-400 hover:text-slate-600 p-1">
-                            <i class="fa-solid fa-xmark text-lg"></i>
-                        </button>
-                    </div>
-
-                    <!-- Live Preview Search Results Dropdown -->
-                    <div id="search-preview" class="hidden absolute left-0 right-0 top-full mt-2 bg-white rounded-xl shadow-2xl border border-slate-200 z-50 text-left overflow-hidden max-h-96 overflow-y-auto"></div>
-                </div>
-                
-                <!-- Quick Tags Search -->
-                <div class="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs text-blue-200">
-                    <span class="opacity-75">Quick Topics:</span>
-                    <button onclick="setQuickSearch('Motor Claim')" class="bg-brand-800/80 hover:bg-blue-700 px-2.5 py-1 rounded-md transition border border-blue-700/40">Motor Claim</button>
-                    <button onclick="setQuickSearch('Risk Assessment')" class="bg-brand-800/80 hover:bg-blue-700 px-2.5 py-1 rounded-md transition border border-blue-700/40">Risk Assessment</button>
-                    <button onclick="setQuickSearch('Fire Policy')" class="bg-brand-800/80 hover:bg-blue-700 px-2.5 py-1 rounded-md transition border border-blue-700/40">Fire Policy</button>
-                    <button onclick="setQuickSearch('Endorsement')" class="bg-brand-800/80 hover:bg-blue-700 px-2.5 py-1 rounded-md transition border border-blue-700/40">Endorsement</button>
-                </div>
-            </div>
-        </section>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-            <!-- HOME VIEW -->
-            <div id="view-home" class="space-y-10">
-                <!-- Navigation Shortcut Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div onclick="navigateTo('categories')" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative overflow-hidden">
-                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            <i class="fa-regular fa-folder-closed"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Categories</h3>
-                        <p class="text-slate-500 text-xs mt-1">Browse topics by specialized insurance category</p>
-                    </div>
-
-                    <div onclick="scrollToSection('popular-section')" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative overflow-hidden">
-                        <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-fire"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-amber-600 transition-colors">Popular Topics</h3>
-                        <p class="text-slate-500 text-xs mt-1">Discover most viewed guidelines & procedures</p>
-                    </div>
-
-                    <div onclick="scrollToSection('recent-section')" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative overflow-hidden">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                            <i class="fa-regular fa-clock"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-emerald-600 transition-colors">Recently Added</h3>
-                        <p class="text-slate-500 text-xs mt-1">Latest changes and rule updates</p>
-                    </div>
-
-                    <div onclick="navigateTo('saved')" class="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 cursor-pointer relative overflow-hidden">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mb-4 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                            <i class="fa-regular fa-bookmark"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Bookmarks</h3>
-                        <p class="text-slate-500 text-xs mt-1">Saved guidelines for fast offline reference</p>
-                    </div>
-                </div>
-
-                <!-- CATEGORIES GRID -->
-                <section>
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h3 class="text-xl font-bold text-slate-900">Explore by Category</h3>
-                            <p class="text-xs text-slate-500 mt-0.5">Quickly navigate to specific departmental guidelines</p>
-                        </div>
-                    </div>
-                    <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-                </section>
-
-                <!-- POPULAR ARTICLES -->
-                <section id="popular-section" class="scroll-mt-24">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-                            <i class="fa-solid fa-fire text-amber-500"></i> Featured Guidelines
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Most referenced manuals & procedures</p>
-                    </div>
-                    <div id="popular-articles-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-                </section>
-
-                <!-- RECENTLY UPDATED -->
-                <section id="recent-section" class="scroll-mt-24">
-                    <div class="mb-6">
-                        <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
-                            <i class="fa-regular fa-clock text-emerald-500"></i> Recently Added
-                        </h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Newly published articles for staff</p>
-                    </div>
-                    <div id="recent-articles-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-                </section>
-            </div>
-
-            <!-- CATEGORIES VIEW -->
-            <div id="view-categories" class="hidden space-y-6">
-                <div class="flex items-center justify-between border-b pb-4 border-slate-200">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Document Categories</h2>
-                        <p class="text-slate-500 text-xs">Browse articles categorized by insurance area</p>
-                    </div>
-                    <select id="category-filter-select" onchange="filterByCategory(this.value)" class="bg-white border border-slate-300 text-slate-700 text-xs rounded-lg px-3 py-2 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="ALL">All Categories</option>
-                    </select>
-                </div>
-                <div id="categories-detailed-list" class="space-y-8"></div>
-            </div>
-
-            <!-- BOOKMARKS VIEW -->
-            <div id="view-saved" class="hidden space-y-6">
-                <div class="border-b pb-4 border-slate-200 flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
-                            <i class="fa-solid fa-bookmark text-amber-500"></i> Saved Bookmarks
-                        </h2>
-                        <p class="text-slate-500 text-xs">Articles you have saved for quick reference</p>
-                    </div>
-                    <button onclick="clearAllSaved()" class="text-xs text-red-600 hover:text-red-800 font-medium">Clear All Saved</button>
-                </div>
-                <div id="saved-articles-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-            </div>
-
-            <!-- SEARCH RESULTS VIEW -->
-            <div id="view-search" class="hidden space-y-6">
-                <div class="border-b pb-4 border-slate-200 flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Search Results</h2>
-                        <p id="search-query-label" class="text-slate-500 text-xs">Showing results for "..."</p>
-                    </div>
-                    <button onclick="navigateTo('home')" class="text-xs font-semibold text-blue-600 hover:text-blue-800">Back to Home</button>
-                </div>
-                <div id="search-results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-            </div>
-
+        <div>
+          <h1 class="text-xl font-bold tracking-wide">Insurance Knowledge Hub</h1>
+          <p class="text-xs text-indigo-300">Staff & Agent Resource Center</p>
         </div>
-    </main>
+      </div>
+      <div class="text-sm text-indigo-200 hidden md:block">
+        <i class="fa-regular fa-clock mr-1"></i> Public Agent Portal
+      </div>
+    </div>
+  </header>
 
-    <div id="article-reader-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
-                <div class="flex items-center space-x-2 text-xs">
-                    <span id="reader-category-badge" class="px-2.5 py-1 rounded-full font-semibold bg-blue-100 text-blue-700">Category</span>
-                    <span id="reader-subcategory" class="text-slate-500">Subcategory</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <button id="reader-bookmark-btn" onclick="toggleBookmarkCurrentArticle()" class="p-2 text-slate-400 hover:text-amber-500 rounded-lg hover:bg-slate-200 transition">
-                        <i class="fa-regular fa-bookmark text-lg"></i>
-                    </button>
-                    <button onclick="window.print()" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-200 transition">
-                        <i class="fa-solid fa-print text-lg"></i>
-                    </button>
-                    <button onclick="closeReaderModal()" class="p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-200 transition">
-                        <i class="fa-solid fa-xmark text-xl"></i>
-                    </button>
-                </div>
-            </div>
+  <!-- Hero & Search Section -->
+  <section class="bg-gradient-to-b from-indigo-900 to-indigo-800 text-white py-12 px-4 shadow-inner">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-extrabold mb-3">How can we help you today?</h2>
+      <p class="text-indigo-200 mb-6 text-sm sm:text-base">Search for insurance policies, claims procedures, guidelines, or downloadable forms.</p>
+      
+      <!-- Search Input -->
+      <div class="relative max-w-2xl mx-auto">
+        <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+          <i class="fa-solid fa-magnifying-glass text-lg"></i>
+        </span>
+        <input 
+          type="text" 
+          id="searchInput" 
+          onkeyup="filterContent()" 
+          placeholder="Type to search articles, guidelines, policies..." 
+          class="w-full pl-12 pr-4 py-3.5 rounded-xl text-slate-800 bg-white shadow-lg focus:outline-none focus:ring-4 focus:ring-indigo-400 text-sm sm:text-base"
+        >
+      </div>
+    </div>
+  </section>
 
-            <div class="p-6 sm:p-8 overflow-y-auto space-y-6 flex-grow">
-                <div>
-                    <h2 id="reader-title" class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">Article Title</h2>
-                    <div class="flex items-center space-x-4 text-xs text-slate-500 mt-3 border-b border-slate-100 pb-4">
-                        <span class="flex items-center gap-1"><i class="fa-regular fa-user"></i> <span id="reader-author">Author</span></span>
-                        <span>&bull;</span>
-                        <span class="flex items-center gap-1"><i class="fa-regular fa-calendar"></i> <span id="reader-date">Date</span></span>
-                    </div>
-                </div>
-
-                <div id="reader-tags" class="flex flex-wrap gap-1.5"></div>
-
-                <div id="reader-content" class="prose prose-slate max-w-none text-slate-700 text-sm sm:text-base leading-relaxed space-y-4"></div>
-                
-                <!-- PDF Document Embedded Section -->
-                <div id="reader-pdf-container" class="hidden border border-red-200 bg-red-50/50 rounded-2xl p-4 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-red-600 text-white rounded-xl flex items-center justify-center text-xl shadow">
-                                <i class="fa-solid fa-file-pdf"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-xs font-bold text-red-900" id="reader-pdf-name">Official Document Attached</h4>
-                                <p class="text-2xs text-red-600">Preview or download the original PDF file below.</p>
-                            </div>
-                        </div>
-                        <a id="reader-pdf-download-btn" href="#" download="Document.pdf" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition shadow">
-                            <i class="fa-solid fa-download"></i>
-                            <span>Download PDF</span>
-                        </a>
-                    </div>
-                    
-                    <!-- Embedded PDF Viewer Frame -->
-                    <div class="w-full bg-slate-800 rounded-xl overflow-hidden h-[450px] shadow-inner">
-                        <iframe id="reader-pdf-frame" class="w-full h-full border-0"></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <div class="p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs">
-                <!-- Admin controls inside reader -->
-                <div id="reader-admin-controls" class="hidden flex items-center space-x-2">
-                    <button onclick="editCurrentArticle()" class="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold transition">
-                        <i class="fa-solid fa-pen-to-square mr-1"></i> Edit Article
-                    </button>
-                    <button onclick="deleteCurrentArticle()" class="px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-700 font-semibold transition">
-                        <i class="fa-solid fa-trash mr-1"></i> Delete
-                    </button>
-                </div>
-                <button onclick="closeReaderModal()" class="px-4 py-2 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition ml-auto">
-                    Close
-                </button>
-            </div>
-        </div>
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+    
+    <!-- Quick Categories -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+      <div onclick="filterCategory('all')" class="cursor-pointer bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition text-center">
+        <i class="fa-solid fa-layer-group text-2xl text-indigo-600 mb-2"></i>
+        <h3 class="font-semibold text-sm">All Topics</h3>
+      </div>
+      <div onclick="filterCategory('motor')" class="cursor-pointer bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition text-center">
+        <i class="fa-solid fa-car text-2xl text-blue-600 mb-2"></i>
+        <h3 class="font-semibold text-sm">Motor Insurance</h3>
+      </div>
+      <div onclick="filterCategory('non-motor')" class="cursor-pointer bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition text-center">
+        <i class="fa-solid fa-house-shield text-2xl text-emerald-600 mb-2"></i>
+        <h3 class="font-semibold text-sm">Non-Motor / Property</h3>
+      </div>
+      <div onclick="filterCategory('claims')" class="cursor-pointer bg-white p-4 rounded-xl shadow-sm border border-slate-200 hover:border-indigo-500 hover:shadow-md transition text-center">
+        <i class="fa-solid fa-file-signature text-2xl text-amber-600 mb-2"></i>
+        <h3 class="font-semibold text-sm">Claims Procedures</h3>
+      </div>
     </div>
 
-    <div id="admin-login-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
-                <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-user-shield text-blue-600"></i> Admin Authentication
-                </h3>
-                <button onclick="closeAdminLoginModal()" class="text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
+    <!-- Knowledge Base Articles Section -->
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-xl font-bold text-slate-800">Knowledge Base & Guidelines</h3>
+      <span id="articleCount" class="text-xs bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full font-medium">3 Articles</span>
+    </div>
 
-            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Enter Admin Passcode</label>
-                    <input type="password" id="admin-passcode-input" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="••••••••" required>
-                </div>
-
-                <div class="text-2xs text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-200">
-                    <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i> Default Admin Passcode: <code class="font-bold text-slate-800">admin123</code> (You can change this anytime after logging in).
-                </div>
-
-                <div class="flex items-center justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeAdminLoginModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button type="submit" class="px-5 py-2 text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition">Verify Admin</button>
-                </div>
-            </form>
+    <!-- Articles Grid -->
+    <div id="articlesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Article 1 -->
+      <div class="article-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition flex flex-col" data-category="motor">
+        <div class="p-6 flex-grow">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-blue-50 text-blue-700">Motor Insurance</span>
+            <span class="text-xs text-slate-400">Ref: POL-001</span>
+          </div>
+          <h4 class="font-bold text-slate-800 text-lg mb-2">Comprehensive Motor Policy Guidelines</h4>
+          <p class="text-slate-600 text-sm line-clamp-3 mb-4">Standard underwriting criteria, age limits, premium calculations, and eligible vehicle models for comprehensive coverage.</p>
         </div>
-    </div>
-
-    <div id="change-passcode-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
-                <h3 class="font-bold text-slate-900 text-lg flex items-center gap-2">
-                    <i class="fa-solid fa-key text-amber-500"></i> Change Admin Passcode
-                </h3>
-                <button onclick="closeChangePasscodeModal()" class="text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <form onsubmit="handleChangePasscode(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">New Passcode</label>
-                    <input type="password" id="new-passcode-input" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter new secret passcode" required minlength="4">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Confirm New Passcode</label>
-                    <input type="password" id="confirm-passcode-input" class="w-full px-3 py-2.5 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Re-enter new passcode" required>
-                </div>
-
-                <div class="flex items-center justify-end space-x-2 pt-2">
-                    <button type="button" onclick="closeChangePasscodeModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button type="submit" class="px-5 py-2 text-xs font-semibold bg-amber-600 hover:bg-amber-700 text-white rounded-lg shadow-md transition">Update Passcode</button>
-                </div>
-            </form>
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
+          <span class="text-xs text-slate-500"><i class="fa-regular fa-calendar mr-1"></i> Updated Jan 2026</span>
+          <button onclick="alert('Viewing policy document...')" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800">Read Article &rarr;</button>
         </div>
-    </div>
+      </div>
 
-    <div id="article-form-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 my-8">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
-                <h3 id="form-modal-title" class="font-bold text-slate-900 text-lg">Add New Knowledge Article</h3>
-                <button onclick="closeFormModal()" class="text-slate-400 hover:text-slate-600">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <form id="article-form" onsubmit="saveArticle(event)" class="space-y-4">
-                <input type="hidden" id="form-article-id">
-                
-                <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Article Title *</label>
-                    <input type="text" id="form-title" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Motor Third-Party Claim Settlement Guide" required>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Category *</label>
-                        <select id="form-category" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Subcategory / Domain</label>
-                        <input type="text" id="form-subcategory" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Underwriting / Claims">
-                    </div>
-                </div>
-
-                <!-- PDF File Upload Box & Web Link -->
-                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
-                    <label class="block text-xs font-semibold text-slate-800 flex items-center justify-between">
-                        <span class="flex items-center gap-1.5 text-red-600">
-                            <i class="fa-solid fa-file-pdf text-base"></i> Upload PDF Document
-                        </span>
-                        <span class="text-2xs text-slate-400 font-normal">Direct File Upload or Web Link</span>
-                    </label>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <span class="block text-2xs text-slate-500 mb-1 font-medium">Option A: Upload Local PDF</span>
-                            <input type="file" id="form-pdf-file" accept="application/pdf" onchange="handleFileSelect(event)" class="w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer">
-                        </div>
-                        <div>
-                            <span class="block text-2xs text-slate-500 mb-1 font-medium">Option B: External PDF URL</span>
-                            <input type="url" id="form-pdf-url" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" placeholder="https://example.com/file.pdf">
-                        </div>
-                    </div>
-                    
-                    <div id="pdf-file-status" class="hidden text-2xs text-emerald-600 font-medium flex items-center gap-1">
-                        <i class="fa-solid fa-circle-check"></i> <span id="pdf-status-name">PDF Loaded Successfully</span>
-                        <button type="button" onclick="clearSelectedPdf()" class="text-red-500 underline ml-2">Remove</button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Author / Department</label>
-                        <input type="text" id="form-author" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. Claims Department">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">Tags (Comma Separated)</label>
-                        <input type="text" id="form-tags" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="motor, claims, settlement">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-slate-700 mb-1">Article Content & Summary *</label>
-                    <textarea id="form-content" rows="6" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter detailed guidelines, procedures, rules, or document summary here..." required></textarea>
-                </div>
-
-                <div class="flex items-center justify-end space-x-2 pt-3 border-t border-slate-100">
-                    <button type="button" onclick="closeFormModal()" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-                    <button type="submit" class="px-5 py-2 text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition">Publish / Save Article</button>
-                </div>
-            </form>
+      <!-- Article 2 -->
+      <div class="article-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition flex flex-col" data-category="claims">
+        <div class="p-6 flex-grow">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-amber-50 text-amber-700">Claims</span>
+            <span class="text-xs text-slate-400">Ref: CLM-102</span>
+          </div>
+          <h4 class="font-bold text-slate-800 text-lg mb-2">Accident Claim Submission Checklist</h4>
+          <p class="text-slate-600 text-sm line-clamp-3 mb-4">Required documents, claim form instructions, surveyor assignment workflow, and timelines for motor accident claims.</p>
         </div>
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
+          <span class="text-xs text-slate-500"><i class="fa-regular fa-calendar mr-1"></i> Updated Feb 2026</span>
+          <button onclick="alert('Viewing claim checklist...')" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800">Read Article &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="article-card bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition flex flex-col" data-category="non-motor">
+        <div class="p-6 flex-grow">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-xs font-semibold px-2.5 py-1 rounded bg-emerald-50 text-emerald-700">Non-Motor</span>
+            <span class="text-xs text-slate-400">Ref: POL-204</span>
+          </div>
+          <h4 class="font-bold text-slate-800 text-lg mb-2">Home & Property Protection Policy</h4>
+          <p class="text-slate-600 text-sm line-clamp-3 mb-4">Fire, natural disaster, and burglary insurance guidelines for residential properties and household contents.</p>
+        </div>
+        <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 flex justify-between items-center">
+          <span class="text-xs text-slate-500"><i class="fa-regular fa-calendar mr-1"></i> Updated Mar 2026</span>
+          <button onclick="alert('Viewing property guidelines...')" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800">Read Article &rarr;</button>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Toast Notification Container -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl text-xs font-semibold hidden flex items-center space-x-3 z-50">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
-        <span id="toast-msg">Action completed</span>
+    <!-- Empty Search State -->
+    <div id="noResults" class="hidden text-center py-12">
+      <i class="fa-solid fa-folder-open text-4xl text-slate-300 mb-3"></i>
+      <p class="text-slate-500 font-medium">No matching articles found.</p>
+      <p class="text-xs text-slate-400 mt-1">Try searching with a different keyword or select another category.</p>
     </div>
 
-    <script>
-        const CATEGORIES = [
-            { id: 'motor', name: 'Motor Insurance', icon: 'fa-car-burst', description: 'Policies, third-party claim limits, underwriting checklists & endorsements.' },
-            { id: 'non-motor', name: 'Non-Motor Insurance', icon: 'fa-building-shield', description: 'Fire, Engineering, Marine Cargo, and Liability guidelines.' },
-            { id: 'claims', name: 'Claims Guidelines', icon: 'fa-file-signature', description: 'Settlement matrices, surveyor empanelment, and claim investigation procedures.' },
-            { id: 'underwriting', name: 'Underwriting Manuals', icon: 'fa-calculator', description: 'Risk rating guides, deductibles, authority limits, and discounts.' },
-            { id: 'policy-servicing', name: 'Policy Servicing', icon: 'fa-file-invoice', description: 'Endorsements, policy cancellations, refunds, and policyholder servicing.' },
-            { id: 'legal', name: 'Legal & Compliance', icon: 'fa-scale-balanced', description: 'Regulatory guidelines, AML policy, and legal notice escalation paths.' },
-            { id: 'customer', name: 'Customer Service Policies', icon: 'fa-headset', description: 'SLA response times, policy cancellation refunds, and complaint handling.' }
-        ];
+  </main>
 
-        const DEFAULT_ARTICLES = [
-            {
-                id: 'art-1',
-                title: 'Third-Party Motor Claim Settlement Matrix',
-                category: 'motor',
-                subcategory: 'Claims Settlement',
-                author: 'Claims Department',
-                date: '2026-02-10',
-                popular: true,
-                tags: ['motor', 'claims', 'settlement', 'third-party'],
-                content: `Standard Operating Procedure for evaluating third-party property damage and bodily injury claims under Comprehensive & Third-Party Motor Policies.\n\nKey Requirements:\n1. Valid Police Report and Incident Summary.\n2. Verified Inspection Report by an Empanelled Loss Assessor.\n3. Proof of Ownership (Registration Certificate / C.R.).\n4. Driving License verification of driver at time of accident.\n\nSettlement Approval Matrix:\n• Claims up to LKR 100,000: Branch Manager Approval\n• LKR 100,001 - LKR 500,000: Regional Manager Approval\n• Above LKR 500,000: Head Office Claims Committee`
-            },
-            {
-                id: 'art-2',
-                title: 'Standard Fire & Special Perils Tariff Guide',
-                category: 'non-motor',
-                subcategory: 'Fire Insurance',
-                author: 'Underwriting Team',
-                date: '2026-01-25',
-                popular: true,
-                tags: ['fire', 'underwriting', 'tariff', 'commercial'],
-                content: `Guidelines for rating and risk valuation for industrial, commercial, and residential properties under Standard Fire Policies.\n\nCovered Perils:\n• Fire, Lightning, and Explosion/Implosion.\n• Flood, Storm, Tempest, Cyclone, Inundation.\n• Impact Damage by Rail/Road vehicle or animal.\n• Bursting and/or overflowing of Water Tanks, Apparatus and Pipes.\n\nDeductibles & Excess:\n• Commercial Risks: 5% of claim amount subject to minimum threshold.\n• Residential Risks: Standard fixed deductible as per policy schedule.`
-            }
-        ];
+  <!-- Footer -->
+  <footer class="bg-slate-800 text-slate-400 py-6 border-t border-slate-700">
+    <div class="max-w-7xl mx-auto px-4 text-center text-xs">
+      <p>&copy; General Insurance Knowledge Base. For Internal Staff & Agent Use Only.</p>
+    </div>
+  </footer>
 
-        let articles = [];
-        let savedIds = JSON.parse(localStorage.getItem('hub_saved_articles') || '[]');
-        let currentViewArticle = null;
-        let isAdminLoggedIn = false;
-        let adminPasscode = localStorage.getItem('hub_admin_passcode') || 'admin123';
-        let currentUploadedPdfData = null; // Store base64 or file reference
+  <!-- JavaScript for Search and Filter -->
+  <script>
+    function filterContent() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.article-card');
+      let visibleCount = 0;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            loadLocalArticles();
-            renderCategorySelects();
-            renderCategoriesGrid();
-            updateSavedBadge();
-            checkAdminSession();
-        });
-
-        function checkAdminSession() {
-            if (sessionStorage.getItem('hub_admin_active') === 'true') {
-                isAdminLoggedIn = true;
-                document.getElementById('admin-actions').classList.remove('hidden');
-                document.getElementById('admin-login-btn').classList.add('hidden');
-                document.getElementById('reader-admin-controls').classList.remove('hidden');
-            } else {
-                isAdminLoggedIn = false;
-                document.getElementById('admin-actions').classList.add('hidden');
-                document.getElementById('admin-login-btn').classList.remove('hidden');
-                document.getElementById('reader-admin-controls').classList.add('hidden');
-            }
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(input)) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
         }
+      });
 
-        window.openAdminLoginModal = function() {
-            document.getElementById('admin-passcode-input').value = '';
-            document.getElementById('admin-login-modal').classList.remove('hidden');
-        };
+      document.getElementById('articleCount').textContent = visibleCount + " Articles";
+      document.getElementById('noResults').style.display = visibleCount === 0 ? "block" : "none";
+    }
 
-        window.closeAdminLoginModal = function() {
-            document.getElementById('admin-login-modal').classList.add('hidden');
-        };
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.article-card');
+      let visibleCount = 0;
 
-        window.handleAdminLogin = function(e) {
-            e.preventDefault();
-            const entered = document.getElementById('admin-passcode-input').value;
-            if (entered === adminPasscode) {
-                sessionStorage.setItem('hub_admin_active', 'true');
-                checkAdminSession();
-                closeAdminLoginModal();
-                showToast('Welcome Admin! Article edit & add options enabled.');
-            } else {
-                showToast('Incorrect Admin Passcode!');
-            }
-        };
-
-        window.adminLogout = function() {
-            sessionStorage.removeItem('hub_admin_active');
-            checkAdminSession();
-            showToast('Logged out of Admin mode');
-        };
-
-        window.openChangePasscodeModal = function() {
-            document.getElementById('new-passcode-input').value = '';
-            document.getElementById('confirm-passcode-input').value = '';
-            document.getElementById('change-passcode-modal').classList.remove('hidden');
-        };
-
-        window.closeChangePasscodeModal = function() {
-            document.getElementById('change-passcode-modal').classList.add('hidden');
-        };
-
-        window.handleChangePasscode = function(e) {
-            e.preventDefault();
-            const p1 = document.getElementById('new-passcode-input').value;
-            const p2 = document.getElementById('confirm-passcode-input').value;
-
-            if (p1 !== p2) {
-                showToast('Passcodes do not match!');
-                return;
-            }
-
-            adminPasscode = p1;
-            localStorage.setItem('hub_admin_passcode', p1);
-            closeChangePasscodeModal();
-            showToast('Admin Passcode updated successfully!');
-        };
-
-        function loadLocalArticles() {
-            const stored = localStorage.getItem('hub_articles_data');
-            if (stored) {
-                try {
-                    articles = JSON.parse(stored);
-                } catch(e) {
-                    articles = [...DEFAULT_ARTICLES];
-                }
-            } else {
-                articles = [...DEFAULT_ARTICLES];
-                saveLocalArticles();
-            }
-            renderAllData();
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
         }
+      });
 
-        function saveLocalArticles() {
-            try {
-                localStorage.setItem('hub_articles_data', JSON.stringify(articles));
-            } catch (err) {
-                showToast('Warning: LocalStorage limit reached for large PDF files.');
-            }
-        }
+      document.getElementById('articleCount').textContent = visibleCount + " Articles";
+      document.getElementById('noResults').style.display = visibleCount === 0 ? "block" : "none";
+    }
+  </script>
 
-        function renderAllData() {
-            renderPopularArticles();
-            renderRecentArticles();
-            renderCategoriesDetailed('ALL');
-            renderSavedArticles();
-        }
-
-        function renderCategoriesGrid() {
-            const grid = document.getElementById('category-grid');
-            if (!grid) return;
-            grid.innerHTML = CATEGORIES.map(c => {
-                const count = articles.filter(a => a.category === c.id).length;
-                return `
-                    <div onclick="filterByCategory('${c.id}'); navigateTo('categories');" class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-300 transition-all cursor-pointer group">
-                        <div class="flex items-center justify-between mb-3">
-                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg group-hover:bg-blue-600 group-hover:text-white transition">
-                                <i class="fa-solid ${c.icon}"></i>
-                            </div>
-                            <span class="text-2xs font-bold px-2 py-1 rounded-full bg-slate-100 text-slate-600">${count} Articles</span>
-                        </div>
-                        <h4 class="font-bold text-slate-800 group-hover:text-blue-600 text-sm transition-colors">${c.name}</h4>
-                        <p class="text-slate-500 text-xs mt-1 line-clamp-2">${c.description}</p>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function renderPopularArticles() {
-            const list = document.getElementById('popular-articles-list');
-            if (!list) return;
-            const popular = articles.filter(a => a.popular).slice(0, 6);
-            list.innerHTML = popular.length ? popular.map(a => createArticleCardHTML(a)).join('') : `<p class="text-xs text-slate-400 col-span-3 py-4">No guidelines featured yet.</p>`;
-        }
-
-        function renderRecentArticles() {
-            const list = document.getElementById('recent-articles-list');
-            if (!list) return;
-            const sorted = [...articles].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 6);
-            list.innerHTML = sorted.length ? sorted.map(a => createArticleCardHTML(a)).join('') : `<p class="text-xs text-slate-400 col-span-3 py-4">No recent articles available.</p>`;
-        }
-
-        function renderCategoriesDetailed(selectedCatId) {
-            const container = document.getElementById('categories-detailed-list');
-            if (!container) return;
-
-            const catsToRender = selectedCatId === 'ALL' ? CATEGORIES : CATEGORIES.filter(c => c.id === selectedCatId);
-
-            container.innerHTML = catsToRender.map(cat => {
-                const catArticles = articles.filter(a => a.category === cat.id);
-                return `
-                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg">
-                                    <i class="fa-solid ${cat.icon}"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-slate-900 text-base">${cat.name}</h3>
-                                    <p class="text-xs text-slate-500">${cat.description}</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">${catArticles.length} documents</span>
-                        </div>
-
-                        ${catArticles.length > 0 ? `
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
-                                ${catArticles.map(a => createArticleCardHTML(a)).join('')}
-                            </div>
-                        ` : `
-                            <p class="text-xs text-slate-400 italic py-2">No articles in this category yet.</p>
-                        `}
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function renderSavedArticles() {
-            const container = document.getElementById('saved-articles-container');
-            if (!container) return;
-
-            const savedArticles = articles.filter(a => savedIds.includes(a.id));
-            if (savedArticles.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300">
-                        <i class="fa-regular fa-bookmark text-4xl text-slate-300 mb-3 block"></i>
-                        <h4 class="font-bold text-slate-700 text-sm">No Saved Articles</h4>
-                        <p class="text-slate-500 text-xs mt-1">Bookmark important guidelines to access them here quickly.</p>
-                    </div>
-                `;
-                return;
-            }
-            container.innerHTML = savedArticles.map(a => createArticleCardHTML(a)).join('');
-        }
-
-        function createArticleCardHTML(article) {
-            const cat = CATEGORIES.find(c => c.id === article.category) || { name: 'General' };
-            const isSaved = savedIds.includes(article.id);
-            const hasPdf = (article.pdfData && article.pdfData.trim() !== '') || (article.pdfUrl && article.pdfUrl.trim() !== '');
-
-            return `
-                <div class="bg-white rounded-xl border border-slate-200 p-5 hover:shadow-md transition-all flex flex-col justify-between group relative">
-                    <div>
-                        <div class="flex items-center justify-between text-2xs mb-2">
-                            <span class="px-2 py-0.5 rounded-md font-semibold bg-blue-50 text-blue-600 flex items-center gap-1">
-                                ${cat.name}
-                                ${hasPdf ? '<i class="fa-solid fa-file-pdf text-red-500 ml-1" title="Includes PDF Attachment"></i>' : ''}
-                            </span>
-                            <span class="text-slate-400">${article.date}</span>
-                        </div>
-                        <h4 onclick="openArticleReader('${article.id}')" class="font-bold text-slate-800 text-sm leading-snug hover:text-blue-600 transition-colors cursor-pointer line-clamp-2">
-                            ${article.title}
-                        </h4>
-                        <p class="text-slate-500 text-xs mt-2 line-clamp-3 leading-relaxed">
-                            ${article.content}
-                        </p>
-                    </div>
-
-                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                        <span class="text-slate-400 text-2xs"><i class="fa-regular fa-user mr-1"></i> ${article.author || 'Staff'}</span>
-                        <div class="flex items-center space-x-2">
-                            <button onclick="toggleSaveArticle('${article.id}', event)" class="p-1.5 text-slate-400 hover:text-amber-500 transition" title="Save Bookmark">
-                                <i class="${isSaved ? 'fa-solid text-amber-500' : 'fa-regular'} fa-bookmark"></i>
-                            </button>
-                            <button onclick="openArticleReader('${article.id}')" class="text-blue-600 font-semibold hover:underline flex items-center text-xs">
-                                Read ${hasPdf ? 'PDF' : ''} <i class="fa-solid fa-chevron-right ml-1 text-2xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        window.handleSearch = function(query) {
-            const preview = document.getElementById('search-preview');
-            const clearBtn = document.getElementById('clear-search-btn');
-
-            if (!query.trim()) {
-                preview.classList.add('hidden');
-                clearBtn.classList.add('hidden');
-                return;
-            }
-
-            clearBtn.classList.remove('hidden');
-            const q = query.toLowerCase().trim();
-
-            const matched = articles.filter(a => 
-                a.title.toLowerCase().includes(q) || 
-                a.content.toLowerCase().includes(q) || 
-                (a.tags && a.tags.some(t => t.toLowerCase().includes(q)))
-            );
-
-            if (matched.length === 0) {
-                preview.innerHTML = `<div class="p-4 text-xs text-slate-500 text-center">No articles found matching "${query}"</div>`;
-            } else {
-                preview.innerHTML = matched.slice(0, 5).map(a => `
-                    <div onclick="openArticleReader('${a.id}'); clearSearch();" class="p-3 hover:bg-slate-50 border-b border-slate-100 cursor-pointer transition">
-                        <div class="font-bold text-slate-800 text-xs hover:text-blue-600">${a.title}</div>
-                        <div class="text-2xs text-slate-400 line-clamp-1 mt-0.5">${a.content}</div>
-                    </div>
-                `).join('') + `
-                    <div onclick="executeFullSearch('${query}');" class="p-2.5 bg-slate-100 text-center text-xs text-blue-600 font-semibold hover:bg-slate-200 cursor-pointer">
-                        See all ${matched.length} results <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </div>
-                `;
-            }
-            preview.classList.remove('hidden');
-        };
-
-        window.setQuickSearch = function(term) {
-            const input = document.getElementById('main-search-input');
-            input.value = term;
-            handleSearch(term);
-        };
-
-        window.clearSearch = function() {
-            const input = document.getElementById('main-search-input');
-            input.value = '';
-            document.getElementById('search-preview').classList.add('hidden');
-            document.getElementById('clear-search-btn').classList.add('hidden');
-        };
-
-        window.executeFullSearch = function(query) {
-            const q = query.toLowerCase().trim();
-            document.getElementById('search-query-label').innerText = `Showing results for "${query}"`;
-            
-            const matched = articles.filter(a => 
-                a.title.toLowerCase().includes(q) || 
-                a.content.toLowerCase().includes(q)
-            );
-
-            const grid = document.getElementById('search-results-grid');
-            grid.innerHTML = matched.length ? matched.map(a => createArticleCardHTML(a)).join('') : `<p class="text-xs text-slate-500 col-span-full">No knowledge hub items match your search term.</p>`;
-            navigateTo('search');
-            clearSearch();
-        };
-
-        window.openArticleReader = function(id) {
-            const art = articles.find(a => a.id === id);
-            if (!art) return;
-
-            currentViewArticle = art;
-            const cat = CATEGORIES.find(c => c.id === art.category) || { name: 'General' };
-
-            document.getElementById('reader-category-badge').innerText = cat.name;
-            document.getElementById('reader-subcategory').innerText = art.subcategory || '';
-            document.getElementById('reader-title').innerText = art.title;
-            document.getElementById('reader-author').innerText = art.author || 'Insurance Staff';
-            document.getElementById('reader-date').innerText = art.date;
-
-            const pdfContainer = document.getElementById('reader-pdf-container');
-            const pdfFrame = document.getElementById('reader-pdf-frame');
-            const pdfDownloadBtn = document.getElementById('reader-pdf-download-btn');
-            const pdfName = document.getElementById('reader-pdf-name');
-
-            const pdfTarget = art.pdfData || art.pdfUrl;
-
-            if (pdfTarget && pdfTarget.trim() !== '') {
-                pdfFrame.src = pdfTarget;
-                pdfDownloadBtn.href = pdfTarget;
-                pdfDownloadBtn.download = `${art.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.pdf`;
-                pdfName.innerText = art.pdfFileName || 'Attached Insurance PDF Document';
-                pdfContainer.classList.remove('hidden');
-            } else {
-                pdfFrame.src = '';
-                pdfContainer.classList.add('hidden');
-            }
-
-            const tagsContainer = document.getElementById('reader-tags');
-            tagsContainer.innerHTML = art.tags ? art.tags.map(t => `<span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded text-2xs font-medium">#${t}</span>`).join('') : '';
-
-            document.getElementById('reader-content').innerHTML = art.content.split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
-
-            document.getElementById('article-reader-modal').classList.remove('hidden');
-        };
-
-        window.closeReaderModal = function() {
-            document.getElementById('article-reader-modal').classList.add('hidden');
-            document.getElementById('reader-pdf-frame').src = '';
-            currentViewArticle = null;
-        };
-
-        window.handleFileSelect = function(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            if (file.type !== 'application/pdf') {
-                showToast('Please select a valid PDF file!');
-                event.target.value = '';
-                return;
-            }
-
-            // Convert PDF to Base64 data URL
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                currentUploadedPdfData = {
-                    data: e.target.result,
-                    name: file.name
-                };
-                document.getElementById('pdf-status-name').innerText = file.name;
-                document.getElementById('pdf-file-status').classList.remove('hidden');
-                showToast('PDF file attached successfully');
-            };
-            reader.readAsDataURL(file);
-        };
-
-        window.clearSelectedPdf = function() {
-            currentUploadedPdfData = null;
-            document.getElementById('form-pdf-file').value = '';
-            document.getElementById('pdf-file-status').classList.add('hidden');
-        };
-
-        window.saveArticle = function(e) {
-            e.preventDefault();
-            if (!isAdminLoggedIn) {
-                showToast('Admin authorization required!');
-                return;
-            }
-
-            const id = document.getElementById('form-article-id').value || `art-${Date.now()}`;
-            const title = document.getElementById('form-title').value.trim();
-            const category = document.getElementById('form-category').value;
-            const subcategory = document.getElementById('form-subcategory').value.trim();
-            const pdfUrl = document.getElementById('form-pdf-url').value.trim();
-            const author = document.getElementById('form-author').value.trim() || 'Insurance Staff';
-            const tagsRaw = document.getElementById('form-tags').value;
-            const content = document.getElementById('form-content').value.trim();
-
-            let pdfData = null;
-            let pdfFileName = null;
-
-            if (currentUploadedPdfData) {
-                pdfData = currentUploadedPdfData.data;
-                pdfFileName = currentUploadedPdfData.name;
-            }
-
-            const newArticle = {
-                id,
-                title,
-                category,
-                subcategory,
-                pdfData,
-                pdfFileName,
-                pdfUrl,
-                author,
-                tags: tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [],
-                content,
-                date: new Date().toISOString().split('T')[0],
-                popular: false
-            };
-
-            const existingIndex = articles.findIndex(a => a.id === id);
-            if (existingIndex >= 0) {
-                // Retain existing PDF if not newly uploaded
-                if (!pdfData && !pdfUrl) {
-                    newArticle.pdfData = articles[existingIndex].pdfData;
-                    newArticle.pdfFileName = articles[existingIndex].pdfFileName;
-                    newArticle.pdfUrl = articles[existingIndex].pdfUrl;
-                }
-                articles[existingIndex] = newArticle;
-            } else {
-                articles.unshift(newArticle);
-            }
-
-            saveLocalArticles();
-            closeFormModal();
-            renderAllData();
-            renderCategoriesGrid();
-            showToast('Article with PDF published successfully!');
-        };
-
-        window.deleteCurrentArticle = function() {
-            if (!isAdminLoggedIn) {
-                showToast('Admin authorization required!');
-                return;
-            }
-            if (!currentViewArticle) return;
-            articles = articles.filter(a => a.id !== currentViewArticle.id);
-            saveLocalArticles();
-            closeReaderModal();
-            renderAllData();
-            renderCategoriesGrid();
-            showToast('Article deleted');
-        };
-
-        window.navigateTo = function(viewName) {
-            const views = ['home', 'categories', 'saved', 'search'];
-            views.forEach(v => {
-                const el = document.getElementById(`view-${v}`);
-                if (el) el.classList.add('hidden');
-            });
-
-            const target = document.getElementById(`view-${viewName}`);
-            if (target) target.classList.remove('hidden');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        window.scrollToSection = function(id) {
-            navigateTo('home');
-            setTimeout(() => {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
-        };
-
-        window.filterByCategory = function(catId) {
-            renderCategoriesDetailed(catId);
-        };
-
-        window.openArticleModal = function(editArt = null) {
-            if (!isAdminLoggedIn) {
-                showToast('Admin authorization required!');
-                openAdminLoginModal();
-                return;
-            }
-
-            document.getElementById('article-form').reset();
-            document.getElementById('form-article-id').value = '';
-            clearSelectedPdf();
-
-            if (editArt) {
-                document.getElementById('form-modal-title').innerText = 'Edit Knowledge Article';
-                document.getElementById('form-article-id').value = editArt.id;
-                document.getElementById('form-title').value = editArt.title;
-                document.getElementById('form-category').value = editArt.category;
-                document.getElementById('form-subcategory').value = editArt.subcategory || '';
-                document.getElementById('form-pdf-url').value = editArt.pdfUrl || '';
-                document.getElementById('form-author').value = editArt.author || '';
-                document.getElementById('form-tags').value = editArt.tags ? editArt.tags.join(', ') : '';
-                document.getElementById('form-content').value = editArt.content;
-
-                if (editArt.pdfFileName) {
-                    document.getElementById('pdf-status-name').innerText = editArt.pdfFileName;
-                    document.getElementById('pdf-file-status').classList.remove('hidden');
-                }
-            } else {
-                document.getElementById('form-modal-title').innerText = 'Add New Knowledge Article';
-            }
-
-            document.getElementById('article-form-modal').classList.remove('hidden');
-        };
-
-        window.closeFormModal = function() {
-            document.getElementById('article-form-modal').classList.add('hidden');
-            clearSelectedPdf();
-        };
-
-        window.editCurrentArticle = function() {
-            if (currentViewArticle) {
-                const artToEdit = { ...currentViewArticle };
-                closeReaderModal();
-                openArticleModal(artToEdit);
-            }
-        };
-
-        window.toggleSaveArticle = function(id, event) {
-            if (event) event.stopPropagation();
-            if (savedIds.includes(id)) {
-                savedIds = savedIds.filter(i => i !== id);
-                showToast('Removed bookmark');
-            } else {
-                savedIds.push(id);
-                showToast('Article bookmarked');
-            }
-            localStorage.setItem('hub_saved_articles', JSON.stringify(savedIds));
-            updateSavedBadge();
-            renderAllData();
-        };
-
-        window.toggleBookmarkCurrentArticle = function() {
-            if (currentViewArticle) {
-                toggleSaveArticle(currentViewArticle.id, null);
-                openArticleReader(currentViewArticle.id);
-            }
-        };
-
-        window.clearAllSaved = function() {
-            savedIds = [];
-            localStorage.setItem('hub_saved_articles', '[]');
-            updateSavedBadge();
-            renderSavedArticles();
-            showToast('All bookmarks cleared');
-        };
-
-        function updateSavedBadge() {
-            const badge = document.getElementById('saved-badge');
-            if (!badge) return;
-            if (savedIds.length > 0) {
-                badge.innerText = savedIds.length;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
-        }
-
-        function renderCategorySelects() {
-            const catSelect = document.getElementById('form-category');
-            const filterSelect = document.getElementById('category-filter-select');
-
-            if (catSelect) {
-                catSelect.innerHTML = CATEGORIES.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-            }
-            if (filterSelect) {
-                filterSelect.innerHTML = `<option value="ALL">All Categories</option>` + CATEGORIES.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
-            }
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const msg = document.getElementById('toast-msg');
-            msg.innerText = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
